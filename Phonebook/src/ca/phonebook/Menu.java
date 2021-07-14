@@ -1,27 +1,28 @@
 package ca.phonebook;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu
 {
 	
+	private int userSelection = 0;
+	
 	// MAIN MENU ARTWORK
 	public void menuTitleArt()
 	{
-		System.out.println("--------------------------------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------------------------\n");
 		System.out.println("  ####### ##   ##  ######  ###    ## ####### ######   ######   ######  ##   ##  ");	 
 		System.out.println("  ##   ## ##   ## ##    ## ####   ## ##      ##   ## ##    ## ##    ## ##  ##   ");
 		System.out.println("  ####### ####### ##    ## ## ##  ## #####   ######  ##    ## ##    ## #####    ");   
 		System.out.println("  ##      ##   ## ##    ## ##  ## ## ##      ##   ## ##    ## ##    ## ##  ##   ");  
-		System.out.println("  ##      ##   ##  ######  ##   #### ####### ######   ######   ######  ##   ##  ");
-		System.out.println("--------------------------------------------------------------------------------");                                                                                                                        
+		System.out.println("  ##      ##   ##  ######  ##   #### ####### ######   ######   ######  ##   ##  ");                                                                                                                
 	}
 	
 	// MAIN MENU (SELECTIONS)
 	public void menuSelections()
 	{
-		System.out.println("     W E L C O M E  T O  Y O U R  P H O N E B O O K  A P P L I C A T I O N");
+		System.out.println("\n--------------------------------------------------------------------------------");
+		System.out.println("     W E L C O M E  T O  Y O U R  M A I N  M E N U");
 		System.out.println("");
 		System.out.println("     Please select from the following choices...");
 		System.out.println("     1. ADD NEW CONTACT");
@@ -32,10 +33,13 @@ public class Menu
 		
 		
 		System.out.print("\n     Enter selection: ");
+		
 		Scanner scanner = new Scanner(System.in);
-		int userSelection = scanner.nextInt();
-	
+		
+		userSelection = scanner.nextInt();
+		
 		System.out.println("\n--------------------------------------------------------------------------------");
+		
 		
 		// Switch Statement to Control Menu Flow
 		switch (userSelection)
@@ -43,11 +47,13 @@ public class Menu
 		case 1: 
 			menuAdd();
 			break;
+		case 2: 
+			menuRemove();
+			break;
 		case 5:
 			exitApplication();
 			break;
 		}
-		
 	}
 	
 	// ADD NEW CONTACT MENU
@@ -74,15 +80,30 @@ public class Menu
 		
 		System.out.print("\n     Are you sure you wish to add this contact to your phonebook? (Y or N):  ");
 		String contactAddConfirm = addContactScanner.next();
+		
+		// TODO: Add data validation to verify the char input is either Y or N.
+		
 		System.out.println("\n--------------------------------------------------------------------------------");
 		
 		addContactScanner.close();
 
+		menuSelections();
 	}
 	
 	// DELETE/REMOVE CONTACT MENU
 	public void menuRemove()
 	{
+		Scanner removeContactScanner = new Scanner(System.in);
+		
+		System.out.println("\n     R E M O V E  C O N T A C T  I N F O R M A T I O N");
+		
+		System.out.print("     Telephone Number: ");
+		String input = removeContactScanner.next();
+		
+		if (input.contentEquals("back"))
+		{
+			menuSelections();
+		}
 		
 	}
 	
