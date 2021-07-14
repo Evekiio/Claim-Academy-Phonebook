@@ -11,6 +11,7 @@ public class Menu
 	// MAIN MENU ARTWORK
 	public void menuTitleArt()
 	{
+		// Basic Graphical Artwork : Simply Esthetic
 		System.out.println("--------------------------------------------------------------------------------\n");
 		System.out.println("  ####### ##   ##  ######  ###    ## ####### ######   ######   ######  ##   ##  ");	 
 		System.out.println("  ##   ## ##   ## ##    ## ####   ## ##      ##   ## ##    ## ##    ## ##  ##   ");
@@ -57,6 +58,11 @@ public class Menu
 		case 5:
 			exitApplication();
 			break;
+		case 6:
+			Database.databaseConnection();
+		default:
+			System.out.println("Invalid selection. Please enter a number 1-5 to make a selection...");
+			menuSelections();
 		}
 	}
 	
