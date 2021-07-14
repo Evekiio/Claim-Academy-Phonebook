@@ -6,6 +6,8 @@ public class Menu
 {
 	
 	private int userSelection = 0;
+	Contact[] contactStorage = new Contact[0];
+	
 	Scanner scanner = new Scanner(System.in);
 	
 	// MAIN MENU ARTWORK
@@ -31,7 +33,8 @@ public class Menu
 		System.out.println("     2. REMOVE CONTACT");
 		System.out.println("     3. UPDATE CONTACT");
 		System.out.println("     4. SEARCH DIRECTORY FOR CONTACT");
-		System.out.println("     5. EXIT/CLOSE PHONEBOOK");
+		System.out.println("     5. BROWSE DIRECTORY");
+		System.out.println("     6. EXIT/CLOSE PHONEBOOK");
 		
 		System.out.print("\n     Enter selection: ");
 			
@@ -56,10 +59,11 @@ public class Menu
 			menuSearch();
 			break;
 		case 5:
-			exitApplication();
+			menuBrowse();
 			break;
 		case 6:
-			Database.databaseConnection();
+			exitApplication();
+			//Database.databaseConnection();
 		default:
 			System.out.println("Invalid selection. Please enter a number 1-5 to make a selection...");
 			menuSelections();
@@ -97,11 +101,27 @@ public class Menu
 		{
 			Contact contact = new Contact(contactFirstName, contactLastName, contactTelephone, contactStreet, contactCity, contactState);
 			System.out.print("\n     " + contact.getFirstName() + " " + contact.getLastName() + " added to phonebook!\n");
+			contactStorage = addContact(contactStorage, contact);
 		}
 		
 		// TODO: Add data validation to verify the char input is either Y or N.
 			
 		menuSelections();
+	}
+	
+	// Add new contact to array for storage
+	public Contact[] addContact(Contact[] contactStorage, Contact contact)
+	{
+		Contact[] contactOutput = new Contact[contactStorage.length + 1];
+		
+		for (int i = 0; i < contactStorage.length - 1; i++)
+		{
+			contactOutput[i] = contactStorage[i];
+		}
+		
+		contactOutput[contactStorage.length] = contact;
+		
+		return contactOutput;
 	}
 	
 	// DELETE/REMOVE CONTACT MENU
@@ -140,11 +160,45 @@ public class Menu
 		
 		System.out.print("\n     Telephone Number: ");
 		String input = scanner.next();
+		int searchIndex = 0;
 		
 		if (input.contentEquals("back"))
 		{
 			menuSelections();
 		}
+		
+		for (int i = 0; i < contactStorage.length; i++)
+		{
+			System.out.println(contactStorage[i].getPhoneNumber());
+			
+//			if (contactStorage[i].getPhoneNumber() == input)
+//			{
+//				System.out.println("The phone number was found...");
+//				searchIndex = i;
+//			}
+//			
+//			else
+//			{
+//				System.out.println("The phone number was not found...");
+//				System.out.println(contactStorage[i].getPhoneNumber());
+//			}
+		}
+	}
+	
+	public void menuBrowse() 
+	{
+		for (int i = 0; i < contactStorage.length; i++)
+		{
+			System.out.print("+++++  CONTACT DATA FROM " + contactStorage[i] + " +++++");
+			Contact currentContact = contactStorage[i];
+			String[] contactData = currentContact.contactInformation();
+			
+			for (int j = 0; j < contactData.length; j++)
+			{
+				System.out.println(contactData[j]);
+			}
+		}
+		menuSelections();
 	}
 	
 	// EXIT APPLICATION (TERMINATE RUNTIME)

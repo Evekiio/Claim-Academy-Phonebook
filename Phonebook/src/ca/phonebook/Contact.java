@@ -6,6 +6,7 @@ public class Contact extends Address
 	private String lastName;
 	private String phoneNumber;
 	
+	
 	public Contact (String firstNameInput, String lastNameInput, String phoneNumberInput, String streetAddressInput, String cityAddressInput, String stateAddressInput)
 	{
 		super(streetAddressInput, cityAddressInput, stateAddressInput);
@@ -42,6 +43,12 @@ public class Contact extends Address
 	public void setPhoneNumber(String phoneNumber)
 	{
 		this.phoneNumber = phoneNumber;
+	}
+	
+	public String[] contactInformation()
+	{
+		String[] contactData = { this.firstName, this.lastName, this.phoneNumber, this.getStreetAddress(), this.getCityAddress(), this.getStateAddress() };
+		return contactData;
 	}
 	
 	
