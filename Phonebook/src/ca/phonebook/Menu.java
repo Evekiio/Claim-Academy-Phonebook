@@ -6,6 +6,7 @@ public class Menu
 {
 	
 	private int userSelection = 0;
+	Scanner scanner = new Scanner(System.in);
 	
 	// MAIN MENU ARTWORK
 	public void menuTitleArt()
@@ -22,7 +23,7 @@ public class Menu
 	public void menuSelections()
 	{
 		System.out.println("\n--------------------------------------------------------------------------------");
-		System.out.println("     W E L C O M E  T O  Y O U R  M A I N  M E N U");
+		System.out.println("     ++++ M A I N  M E N U ++++");
 		System.out.println("");
 		System.out.println("     Please select from the following choices...");
 		System.out.println("     1. ADD NEW CONTACT");
@@ -31,11 +32,8 @@ public class Menu
 		System.out.println("     4. SEARCH DIRECTORY FOR CONTACT");
 		System.out.println("     5. EXIT/CLOSE PHONEBOOK");
 		
-		
 		System.out.print("\n     Enter selection: ");
-		
-		Scanner scanner = new Scanner(System.in);
-		
+			
 		userSelection = scanner.nextInt();
 		
 		System.out.println("\n--------------------------------------------------------------------------------");
@@ -50,6 +48,12 @@ public class Menu
 		case 2: 
 			menuRemove();
 			break;
+		case 3: 
+			menuUpdate();
+			break;
+		case 4:
+			menuSearch();
+			break;
 		case 5:
 			exitApplication();
 			break;
@@ -59,46 +63,48 @@ public class Menu
 	// ADD NEW CONTACT MENU
 	public void menuAdd()  
 	{
-		Scanner addContactScanner = new Scanner(System.in);
 		
-		System.out.println("\n     A D D  N E W  C O N T A C T  I N F O R M A T I O N");
+		System.out.println("     ++++ A D D  C O N T A C T ++++");
 		
-		System.out.print("     First Name: ");
-		String contactFirstName = addContactScanner.next();
+		System.out.print("\n     First Name: ");
+		String contactFirstName = scanner.next();
 		
 		System.out.print("     Last Name: ");
-		String contactLastName = addContactScanner.next();
+		String contactLastName = scanner.next();
 		
 		System.out.print("     Telephone: ");
-		String contactTelephone = addContactScanner.next();
+		String contactTelephone = scanner.next();
+		
+		System.out.print("     Street Address: ");
+		String contactStreet = scanner.next();
 		
 		System.out.print("     City: ");
-		String contactCity = addContactScanner.next();
+		String contactCity = scanner.next();
 		
 		System.out.print("     State: ");
-		String contactState = addContactScanner.next();
+		String contactState = scanner.next();
 		
 		System.out.print("\n     Are you sure you wish to add this contact to your phonebook? (Y or N):  ");
-		String contactAddConfirm = addContactScanner.next();
+		String contactAddConfirm = scanner.next();
+		
+		if (contactAddConfirm.charAt(0) == 'Y')
+		{
+			Contact contact = new Contact(contactFirstName, contactLastName, contactTelephone, contactStreet, contactCity, contactState);
+			System.out.print("\n     " + contact.getFirstName() + " " + contact.getLastName() + " added to phonebook!\n");
+		}
 		
 		// TODO: Add data validation to verify the char input is either Y or N.
-		
-		System.out.println("\n--------------------------------------------------------------------------------");
-		
-		addContactScanner.close();
-
+			
 		menuSelections();
 	}
 	
 	// DELETE/REMOVE CONTACT MENU
 	public void menuRemove()
 	{
-		Scanner removeContactScanner = new Scanner(System.in);
+		System.out.println("     ++++ R E M O V E  C O N T A C T ++++");
 		
-		System.out.println("\n     R E M O V E  C O N T A C T  I N F O R M A T I O N");
-		
-		System.out.print("     Telephone Number: ");
-		String input = removeContactScanner.next();
+		System.out.print("\n     Telephone Number: ");
+		String input = scanner.next();
 		
 		if (input.contentEquals("back"))
 		{
@@ -110,13 +116,29 @@ public class Menu
 	// UPDATE CONTACT MENU
 	public void menuUpdate()
 	{
+		System.out.println("     ++++ U P D A T E  C O N T A C T ++++");
 		
+		System.out.print("\n     Telephone Number: ");
+		String input = scanner.next();
+		
+		if (input.contentEquals("back"))
+		{
+			menuSelections();
+		}
 	}
 	
 	// SEARCH DIRECTORIES MENU
 	public void menuSearch()
 	{
+		System.out.println("     ++++ S E A R C H  D I R E C T O R Y ++++");
 		
+		System.out.print("\n     Telephone Number: ");
+		String input = scanner.next();
+		
+		if (input.contentEquals("back"))
+		{
+			menuSelections();
+		}
 	}
 	
 	// EXIT APPLICATION (TERMINATE RUNTIME)
