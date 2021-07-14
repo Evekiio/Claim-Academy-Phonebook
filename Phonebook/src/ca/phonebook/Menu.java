@@ -1,9 +1,11 @@
 package ca.phonebook;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu
 {
+	
 	// MAIN MENU ARTWORK
 	public void menuTitleArt()
 	{
@@ -28,12 +30,14 @@ public class Menu
 		System.out.println("     4. SEARCH DIRECTORY FOR CONTACT");
 		System.out.println("     5. EXIT/CLOSE PHONEBOOK");
 		
-		Scanner scanner = new Scanner(System.in);
+		
 		System.out.print("\n     Enter selection: ");
-		
+		Scanner scanner = new Scanner(System.in);
 		int userSelection = scanner.nextInt();
-		scanner.close();
+	
+		System.out.println("\n--------------------------------------------------------------------------------");
 		
+		// Switch Statement to Control Menu Flow
 		switch (userSelection)
 		{
 		case 1: 
@@ -47,9 +51,33 @@ public class Menu
 	}
 	
 	// ADD NEW CONTACT MENU
-	public void menuAdd()
+	public void menuAdd()  
 	{
+		Scanner addContactScanner = new Scanner(System.in);
 		
+		System.out.println("\n     A D D  N E W  C O N T A C T  I N F O R M A T I O N");
+		
+		System.out.print("     First Name: ");
+		String contactFirstName = addContactScanner.next();
+		
+		System.out.print("     Last Name: ");
+		String contactLastName = addContactScanner.next();
+		
+		System.out.print("     Telephone: ");
+		String contactTelephone = addContactScanner.next();
+		
+		System.out.print("     City: ");
+		String contactCity = addContactScanner.next();
+		
+		System.out.print("     State: ");
+		String contactState = addContactScanner.next();
+		
+		System.out.print("\n     Are you sure you wish to add this contact to your phonebook? (Y or N):  ");
+		String contactAddConfirm = addContactScanner.next();
+		System.out.println("\n--------------------------------------------------------------------------------");
+		
+		addContactScanner.close();
+
 	}
 	
 	// DELETE/REMOVE CONTACT MENU
@@ -76,6 +104,11 @@ public class Menu
 		Runtime.getRuntime().exit(0);
 	}
 	
+	public void clearConsole() 
+	{
+	  // FIXME: Figure out why java clear console doesn't work...
+	}
 }
+
 
 

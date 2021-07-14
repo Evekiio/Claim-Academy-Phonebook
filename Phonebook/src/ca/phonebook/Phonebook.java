@@ -3,7 +3,7 @@ package ca.phonebook;
 public class Phonebook
 {
 
-	public static void main(String[] args)
+	public static void main(String[] args) 
 	{
 	
 		// Instantiate Menu Object
