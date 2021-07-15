@@ -1,18 +1,25 @@
 package ca.phonebook;
 
-public class Contact extends Address
+public class Contact
 {
+	
+	// Declare Variables
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
+	private String streetAddress;
+	private String city;
+	private String state;
 	
-	
-	public Contact (String firstNameInput, String lastNameInput, String phoneNumberInput, String streetAddressInput, String cityAddressInput, String stateAddressInput)
+	public Contact(String firstName, String lastName, String phoneNumber, String streetAddress, String city, String state)
 	{
-		super(streetAddressInput, cityAddressInput, stateAddressInput);
-		this.firstName = firstNameInput;
-		this.lastName = lastNameInput;
-		this.phoneNumber = phoneNumberInput;
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.streetAddress = streetAddress;
+		this.city = city;
+		this.state = state;
 	}
 
 	public String getFirstName()
@@ -44,12 +51,34 @@ public class Contact extends Address
 	{
 		this.phoneNumber = phoneNumber;
 	}
-	
-	public String[] contactInformation()
+
+	public String getStreetAddress()
 	{
-		String[] contactData = { this.firstName, this.lastName, this.phoneNumber, this.getStreetAddress(), this.getCityAddress(), this.getStateAddress() };
-		return contactData;
+		return streetAddress;
 	}
-	
-	
+
+	public void setStreetAddress(String streetAddress)
+	{
+		this.streetAddress = streetAddress;
+	}
+
+	public String getCity()
+	{
+		return city;
+	}
+
+	public void setCity(String city)
+	{
+		this.city = city;
+	}
+
+	public String getState()
+	{
+		return state;
+	}
+
+	public void setState(String state)
+	{
+		this.state = state;
+	}
 }

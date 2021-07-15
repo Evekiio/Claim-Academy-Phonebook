@@ -1,40 +1,46 @@
 package ca.phonebook;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class Database
 {
-	
-	//TODO: make this so it automatically finds local database file.
-	static String jdbcUrl = "jdbc:sqlite:/C:\\Users\\sande\\Desktop\\GitHub\\Claim-Academy-Phonebook\\Phonebook\\data\\data.db";
-	
-	public static void databaseConnection() 
+	private Contact[] directory = new Contact[0];
+
+	public Database()
 	{
-		try
-		{
-		Connection connection = DriverManager.getConnection(jdbcUrl);
-		String sql = "SELECT * FROM Contacts";
-		
-		Statement statement = connection.createStatement();
-		ResultSet result = statement.executeQuery(sql);
-		
-		while (result.next())
-		{
-		String firstName = result.getString("firstName");
-		String lastName = result.getString("lastName");
-		
-		System.out.println("The data from SQLite: \n-- First Name: " + firstName + "\n-- Last Name: " + lastName);
-		}
-		
-		}
-		catch (SQLException e)
-		{
-			System.out.println("Error connecting to SQLite database.");
-			e.printStackTrace();;
-		}	
+		super();
 	}
+
+	public void addContact(Contact[] oldDirectory, Contact newContact)
+	{
+		// Create a new object array that has room for the new contact :: Old Array Size + 1
+		Contact[] newDirectory = new Contact[oldDirectory.length + 1];
+		
+		// Copy all object references from old array to the new array.
+		for (int i = 0; i < oldDirectory.length; i++)
+		{
+			newDirectory[i] = oldDirectory[i];
+		}
+		
+		// Add the new contact in the last index of new array. 
+		newDirectory[oldDirectory.length] = newContact;
+		
+		// Update reference for directory. 
+		directory = newDirectory;
+	}
+	
+	public void removeContact()
+	{
+		
+	}
+
+	public Contact[] getDirectory()
+	{
+		return directory;
+	}
+
+	public void setDirectory(Contact[] directory)
+	{
+		this.directory = directory;
+	}
+	
+	
 }
