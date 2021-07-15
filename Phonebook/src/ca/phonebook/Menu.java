@@ -189,13 +189,13 @@ public class Menu
 	{
 		for (int i = 0; i < contactStorage.length; i++)
 		{
-			System.out.print("+++++  CONTACT DATA FROM " + contactStorage[i] + " +++++");
+			System.out.println("     +++++  CONTACT DATA FROM " + contactStorage[i] + " +++++");
 			Contact currentContact = contactStorage[i];
 			String[] contactData = currentContact.contactInformation();
 			
 			for (int j = 0; j < contactData.length; j++)
 			{
-				System.out.println(contactData[j]);
+				System.out.println("     " + contactData[j]);
 			}
 		}
 		menuSelections();
