@@ -32,19 +32,19 @@ public class Database
 	{
 		// Create a new object array that has less space so we can remove the contact object :: Old Array Size - 1
 		Contact[] newDirectory = new Contact[oldDirectory.length - 1];
-		
+		int trackedRemoval = 0;
 		// Copy all object references from old array to the new array, but skip the object index that we wish to remove.
 		for (int i = 0; i < oldDirectory.length; i++)
 		{
 			if (i == contactIndexToRemove)
 			{
-				System.out.println("\nContact Index[" + contactIndexToRemove + "]:" + oldDirectory[contactIndexToRemove].getFirstName() + " " + oldDirectory[contactIndexToRemove].getLastName() + " has been removed from the directory.");	
-			
+				System.out.println("\nContact Index[" + contactIndexToRemove + "]:" + oldDirectory[contactIndexToRemove].getFirstName() + " " + oldDirectory[contactIndexToRemove].getLastName() + " has been removed from the directory.");
 			}
 			else 
 			{
-				newDirectory[i] = oldDirectory[i];
-				System.out.println("New data copied for: " + oldDirectory[i].getFirstName());
+				newDirectory[trackedRemoval] = oldDirectory[i];
+				System.out.println("\n[New Contact Copied]: " + oldDirectory[i].getFirstName());
+				trackedRemoval++;
 			}
 		}
 		

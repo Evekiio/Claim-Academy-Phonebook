@@ -14,6 +14,7 @@ public class Phonebook
 		
 		// Menu :: Display Menu Options
 		mainMenu.menuSelections();
+	
 	}
 
 }
