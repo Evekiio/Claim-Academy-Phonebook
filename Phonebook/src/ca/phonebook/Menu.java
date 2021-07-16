@@ -9,7 +9,7 @@ public class Menu
 	Database contactData = new Database();
 
 	
-	//########### R E M O V E  T H I S  W H E N  D E V E L O P M E N T  H A S  E N D E D ############
+	//########### R E M O V E  T H I S  B E F O R E  R E L E A S I N G  A P P L I C A T I O N #######
 	public void testingOnly() 
 	{
 	System.out.print("\n");
@@ -24,6 +24,7 @@ public class Menu
 	mainMenu();
 	
 	}
+	//###############################################################################################
 	
 	// A divider for UI/UX element (Esthetic Readability Support)
 	public void divider(boolean isHeader, String header)
@@ -42,6 +43,8 @@ public class Menu
 	public void mainMenu()
 	{
 		divider(true, "M A I N  M E N U");
+		
+		// UPDATE MENU BEFORE RELEASING APPLICATION
 		System.out.print("Welcome to the Phonebook\n1. Add Contact\n2. Remove Contact\n3. Update Contact\n4. Search Contacts \n5. Browse Contacts \n6. Exit Application\n\n##### TESTING ONLY #####\n7. FAST ADD CONTACTS TO DIRECTORY\n\nPlease input a menu selection: ");
 		Scanner scanner = new Scanner(System.in);
 		int userSelection = scanner.nextInt();
@@ -58,16 +61,21 @@ public class Menu
 			updateContact();
 			break;
 		case 4:
+			System.out.print("\nSearch Functionality Coming Soon...\n");
 			searchContacts();
+			mainMenu();
+			break;
 		case 5:
 			browseContacts();
 			break;
 		case 6:
 			exitApplication();
 			break;
+		//########### R E M O V E  T H I S  B E F O R E  R E L E A S I N G  A P P L I C A T I O N #######
 		case 7:
 			testingOnly();
 			break;
+		//###############################################################################################
 		}
 		scanner.close();
 	}
@@ -154,7 +162,6 @@ public class Menu
 			mainMenu();
 		}
 	}
-	
 	
 	//TODO - FIX THE SCANNER INCONSISTANCIES DURING STREET ADDRESS UPDATES
 	// Runs through each object within the "database" (array of contact objects) and gets each objects data.
