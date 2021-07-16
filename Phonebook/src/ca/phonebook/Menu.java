@@ -8,6 +8,7 @@ public class Menu
 	// Instantiate Database Object
 	Database contactData = new Database();
 	
+	// A divider for UI/UX element (Esthetic Readability Support)
 	public void divider(boolean isHeader, String header)
 	{
 		if (isHeader) 
@@ -105,6 +106,7 @@ public class Menu
 		}
 	}
 	
+	// METHOD :: Removes Object from Object[] (Array)
 	public void removeContact()
 	{
 		System.out.print("\nWhat index would you like to remove? (1, 2, 3, Etc.): ");

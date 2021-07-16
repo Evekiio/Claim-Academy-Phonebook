@@ -52,11 +52,6 @@ public class Database
 		directory = newDirectory;	
 	}
 		
-		
-		
-		
-	
-
 	public Contact[] getDirectory()
 	{
 		return directory;
