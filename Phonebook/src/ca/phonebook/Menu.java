@@ -83,6 +83,8 @@ public class Menu
 	// Prompts user for contact information, creates the contact object with the given information, and stores it in the array of contacts.
 	public void addContact()
 	{
+		
+		// Declare the Variables to Pass to the New Contact
 		String firstName;
 		String lastName;
 		String phoneNumber;
@@ -145,8 +147,9 @@ public class Menu
 			mainMenu();
 		}
 		
-		System.out.print("\nWhat index would you like to remove? (1, 2, 3, Etc.): ");
 		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("\nWhat index would you like to remove? (1, 2, 3, Etc.): ");
 		int indexToRemove = scanner.nextInt();
 		
 		System.out.print("\nAre you sure you wish to remove " + directory[indexToRemove].getFirstName() + " " + directory[indexToRemove].getLastName() + " from your phonebook? (Y / N): ");
@@ -204,67 +207,75 @@ public class Menu
 				System.out.print("\nWhat would you like to modify?\n1. First Name\n2. Last Name\n3. Phone Number\n4. Address\n\n");
 				int userSelectToUpdate = scanner.nextInt();
 				String confirmed ="";
-							
+				
+				
+				// Read user input to control flow for updating the identified contact object.
 				switch(userSelectToUpdate)
 				{
 				case 1:
 					System.out.print("\nPlease enter the First Name you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
 					String newFirstName = scanner.next();
+					
 					System.out.print("\nAre you sure you want to update " + contactsToBrowse[indexOfContact].getFirstName() + " with " + newFirstName + "? ( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
 					if (confirmed.equals("Y"))
 					{
-					contactsToBrowse[indexOfContact].setFirstName(newFirstName);
-					System.out.print("\n" + contactsToBrowse[indexOfContact].getFirstName() + " " +  contactsToBrowse[indexOfContact].getLastName() + " has been successfully updated.\n");
-					mainMenu();
+						contactsToBrowse[indexOfContact].setFirstName(newFirstName);
+						System.out.print("\n" + contactsToBrowse[indexOfContact].getFirstName() + " " +  contactsToBrowse[indexOfContact].getLastName() + " has been successfully updated.\n");
+						mainMenu();
 					}
 					
 					else
 					{
-					mainMenu();	
+						mainMenu();	
 					}
 				case 2: 
 					System.out.print("\nPlease enter the Last Name you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
 					String newLastName = scanner.next();
+					
 					System.out.print("\nAre you sure you want to update " + contactsToBrowse[indexOfContact].getLastName() + " with " + newLastName + "? ( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
 					if (confirmed.equals("Y"))
 					{
-					contactsToBrowse[indexOfContact].setLastName(newLastName);
-					System.out.print("\n" + contactsToBrowse[indexOfContact].getFirstName() + " " +  contactsToBrowse[indexOfContact].getLastName() + " has been successfully updated.\n");
-					mainMenu();
+						contactsToBrowse[indexOfContact].setLastName(newLastName);
+						System.out.print("\n" + contactsToBrowse[indexOfContact].getFirstName() + " " +  contactsToBrowse[indexOfContact].getLastName() + " has been successfully updated.\n");
+						mainMenu();
 					}
 					
 					else
 					{
-					mainMenu();	
+						mainMenu();	
 					}
 				case 3:
 					System.out.print("\nPlease enter the Phone Number you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
 					String newPhoneNumber = scanner.next();
+					
 					System.out.print("\nAre you sure you want to update " + contactsToBrowse[indexOfContact].getPhoneNumber() + " with " + newPhoneNumber + "? ( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
 					if (confirmed.equals("Y"))
 					{
-					contactsToBrowse[indexOfContact].setPhoneNumber(newPhoneNumber);
-					System.out.print("\n" + contactsToBrowse[indexOfContact].getFirstName() + " " +  contactsToBrowse[indexOfContact].getLastName() + " has been successfully updated.\n");
-					mainMenu();
+						contactsToBrowse[indexOfContact].setPhoneNumber(newPhoneNumber);
+						System.out.print("\n" + contactsToBrowse[indexOfContact].getFirstName() + " " +  contactsToBrowse[indexOfContact].getLastName() + " has been successfully updated.\n");
+						mainMenu();
 					}
 					
 					else
 					{
-					mainMenu();	
+						mainMenu();	
 					}
 				case 4:
 					System.out.print("\nPlease enter the street address you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
 					String newStreet = scanner.next();
+					
 					System.out.print("\nPlease enter the city you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
 					String newCity = scanner.next();
+					
 					System.out.print("\nPlease enter the state you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
 					String newState = scanner.next();
+					
 					System.out.print("\nAre you sure you want to update " + contactsToBrowse[indexOfContact].getFirstName() + " with... \nStreet: " + newStreet + "\nCity: " + newCity + "\nState: " + newState + "\n( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
