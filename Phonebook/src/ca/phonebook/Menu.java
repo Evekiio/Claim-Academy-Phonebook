@@ -14,15 +14,18 @@ public class Menu
 	{
 	System.out.print("\n");
 	Contact[] contacts = contactData.getDirectory();
-	Contact user1 = new Contact("Sanders", "Riddle", "360-470-9231", "8010 Andrews Court", "Mountain Home AFB", "Idaho");
+	Contact user1 = new Contact("Sanders", "Riddle", "360-470-9231", "8010 Andrews Court", "Mountain Home AFB", "Idaho", 83648);
 	System.out.println(contactData.addContact(contacts, user1));
 	
 	contacts = contactData.getDirectory();
-	Contact user2 = new Contact("Kelsey", "Riddle", "850-585-9750", "8010 Andrews Court", "Mountain Home AFB", "Idaho");
+	Contact user2 = new Contact("Kelsey", "Riddle", "850-585-9750", "8010 Andrews Court", "Mountain Home AFB", "Idaho", 83648);
 	System.out.println(contactData.addContact(contacts, user2));
 	
-	mainMenu();
+	contacts = contactData.getDirectory();
+	Contact user3 = new Contact("Bob", "Smith", "111-111-1111", "1111 Testing Avenue", "Boise", "Idaho", 83701);
+	System.out.println(contactData.addContact(contacts, user3));
 	
+	mainMenu();
 	}
 	//###############################################################################################
 	
@@ -88,11 +91,14 @@ public class Menu
 		String firstName;
 		String lastName;
 		String phoneNumber;
-		String streetAddress;
-		String city;
-		String state;
+		String addressStreet;
+		String addressCity;
+		String addressState;
+		int addressZipCode;
 		
 		divider(true, "A D D  C O N T A C T");
+		
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.print("First Name: ");
@@ -105,20 +111,23 @@ public class Menu
 		phoneNumber = scanner.nextLine();
 		
 		System.out.print("Street Address: ");
-		streetAddress = scanner.nextLine();
+		addressStreet = scanner.nextLine();
 		
 		System.out.print("City: ");
-		city = scanner.nextLine();
+		addressCity = scanner.nextLine();
 		
 		System.out.print("State: ");
-		state = scanner.nextLine();
+		addressState = scanner.nextLine();
+		
+		System.out.print("Zip Code: ");
+		addressZipCode = scanner.nextInt();
 		
 		System.out.print("\nAre you sure you wish to add " + firstName + " " + lastName + " to your phonebook? (Y / N): ");
 		char confirmAddContact = scanner.next().toUpperCase().charAt(0);
 		
 		if (confirmAddContact == 'Y')
 		{
-			Contact newContact = new Contact(firstName, lastName, phoneNumber, streetAddress, city, state);
+			Contact newContact = new Contact(firstName, lastName, phoneNumber, addressStreet, addressCity, addressState, addressZipCode);
 			
 			try 
 			{
@@ -128,10 +137,12 @@ public class Menu
 			{
 				System.out.println("Failed to store data for " + newContact + " please retry entry... (Exception: " + e.toString() + ")");
 			}
+			//scanner.close();
 			mainMenu();
 		}
 		else
 		{
+			//scanner.close();
 			mainMenu();
 		}
 	}
@@ -152,14 +163,16 @@ public class Menu
 			System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
 															  directory[i].getLastName() + " | " + 
 															  directory[i].getPhoneNumber() + " | " + 
-															  directory[i].getStreetAddress() + " " + 
-															  directory[i].getCity() + " " + 
-															  directory[i].getState());
+															  directory[i].getAddressStreet() + " " + 
+															  directory[i].getAddressCity() + " " + 
+															  directory[i].getAddressState() + ", " +
+															  directory[i].getAddressZipCode());
 		}
 		
 		// Empty Line for UI/UX Functionality/Clarity & Return to Main Menu
 		System.out.println("");
 		
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.print("\nWhat index would you like to remove? (1, 2, 3, Etc.): ");
@@ -179,7 +192,6 @@ public class Menu
 		}
 	}
 	
-	// TODO - FIX THE SCANNER INCONSISTANCIES DURING STREET ADDRESS UPDATES
 	// Runs through each object within the "database" (array of contact objects) and gets each objects data.
 	public void updateContact()
 	{
@@ -194,10 +206,22 @@ public class Menu
 		
 		else 
 		{
+			for (int i = 0; i < directory.length; i++)
+			{
+				System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+																  directory[i].getLastName() + " | " + 
+																  directory[i].getPhoneNumber() + " | " + 
+																  directory[i].getAddressStreet() + " " + 
+																  directory[i].getAddressCity() + " " + 
+																  directory[i].getAddressState() + ", " +
+																  directory[i].getAddressZipCode());
+			}
+			
 			// Prompt user for phone number of existing contact
-			System.out.println("\nPlease input the phone number for the contact you wish to update... Example: 429-155-1313");
+			System.out.println("\n\nPlease input the phone number of the contact you wish to update... Example: 429-155-1313");
 			
 			// Read from the input stream to initialize "userSelection"
+			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(System.in);
 			String userSelection = scanner.next();
 			int contactFoundCount = 0;
@@ -289,25 +313,27 @@ public class Menu
 					System.out.print("\nPlease enter the state you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
 					String newState = scanner.next();
 					
+					System.out.print("\nPlease enter the state you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
+					int newZipCode = scanner.nextInt();
+					
 					System.out.print("\nAre you sure you want to update " + directory[indexOfContact].getFirstName() + " with... \nStreet: " + newStreet + "\nCity: " + newCity + "\nState: " + newState + "\n( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
 					
 					if (confirmed.equals("Y"))
 					{
-						directory[indexOfContact].setStreetAddress(newStreet);
-						directory[indexOfContact].setCity(newCity);
-						directory[indexOfContact].setState(newState);
+						directory[indexOfContact].setAddressStreet(newStreet);
+						directory[indexOfContact].setAddressCity(newCity);
+						directory[indexOfContact].setAddressState(newState);
+						directory[indexOfContact].setAddressZipCode(newZipCode);
 						
 						System.out.print("\n" + directory[indexOfContact].getFirstName() + " " +  directory[indexOfContact].getLastName() + " has been successfully updated.\n");
-						
 						
 						mainMenu();
 					}
 					
 					else
 					{
-					
 						mainMenu();	
 					}
 				}
@@ -329,14 +355,12 @@ public class Menu
 		mainMenu();
 	}
 
-	// TODO - NOT STARTED
 	// Search Functionality
 	public void searchContacts()
 	{
 		
 	}
 	
-	// TODO - CLEAN UP UI/UX 
 	// Runs through each object within the "database" (array of contact objects) and gets each objects data.
 	public void browseContacts()
 	{
@@ -354,9 +378,10 @@ public class Menu
 			System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
 															  directory[i].getLastName() + " | " + 
 															  directory[i].getPhoneNumber() + " | " + 
-															  directory[i].getStreetAddress() + " " + 
-															  directory[i].getCity() + " " + 
-															  directory[i].getState());
+															  directory[i].getAddressStreet() + " " + 
+															  directory[i].getAddressCity() + " " + 
+															  directory[i].getAddressState() + ", " +
+															  directory[i].getAddressZipCode());
 		}
 		
 		// Empty Line for UI/UX Functionality/Clarity & Return to Main Menu

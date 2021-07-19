@@ -1,7 +1,15 @@
 package ca.phonebook;
 
-public interface Validation
+public class Validation extends Database
 {
-	public boolean isValidString(String input);
-	public boolean isValidPhoneNumber(String input);
+	public boolean isValidString(String input)
+	{
+		return true;
+	}
+	
+	public boolean isValidPhoneNumber(String input)
+	{
+		return true;
+	}
 }
+
