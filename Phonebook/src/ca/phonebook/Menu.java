@@ -48,7 +48,7 @@ public class Menu
 		divider(true, "M A I N  M E N U");
 		
 		// UPDATE MENU BEFORE RELEASING APPLICATION
-		System.out.print("Welcome to the Phonebook\n1. Add Contact\n2. Remove Contact\n3. Update Contact\n4. Search Contacts \n5. Browse Contacts \n6. Exit Application\n\n##### TESTING ONLY #####\n7. FAST ADD CONTACTS TO DIRECTORY\n\nPlease input a menu selection: ");
+		System.out.print("WELCOME TO THE PHONEBOOK\n1. Add Contact\n2. Remove Contact\n3. Update Contact\n4. Search Contacts \n5. Browse Contacts \n6. Exit Application\n\n##### TESTING ONLY #####\n7. Fast Add Contacts (Testing Only)\n\nPlease input a menu selection: ");
 		Scanner scanner = new Scanner(System.in);
 		int userSelection = scanner.nextInt();
 		
@@ -64,9 +64,9 @@ public class Menu
 			updateContact();
 			break;
 		case 4:
-			System.out.print("\nSearch Functionality Coming Soon...\n");
+			// System.out.print("\nSearch Functionality Coming Soon...\n");
 			searchContacts();
-			mainMenu();
+			// mainMenu();
 			break;
 		case 5:
 			browseContacts();
@@ -361,6 +361,59 @@ public class Menu
 	// Search Functionality
 	public void searchContacts()
 	{
+		Scanner scanner = new Scanner(System.in);
+		int userSelection = 0;
+		boolean isValid = false;
+
+		
+		while (isValid == false)
+		{
+			System.out.println("\nPlease select what you would like to search by...\n\n1. First Name\n2. Last Name\n3. Phone Number\n4. Street Address\n5. City\n6. State\n7. Zip Code\n\nPlease make a selection (1-7): ");
+			userSelection = scanner.nextInt();
+			
+			try 
+			{
+				if (userSelection > 0 && userSelection <= 7)
+				{
+					isValid = true;
+				}
+				
+				else
+				{
+					isValid = false;
+				}
+			}
+			catch (Exception e)
+			{
+			System.out.println("Please enter an integer 1-7 (Example: 2)...");
+			}
+		}
+		
+		// SWITCH STATEMENT
+		switch (userSelection)
+		{
+		case 1:
+			System.out.println("WORKED!");
+			break;
+		case 2:
+			System.out.println("WORKED!");
+			break;
+		case 3:
+			System.out.println("WORKED!");
+			break;
+		case 4:
+			System.out.println("WORKED!");
+			break;
+		case 5:
+			System.out.println("WORKED!");
+			break;
+		case 6:
+			System.out.println("WORKED!");
+			break;
+		case 7:
+			System.out.println("WORKED!");
+			break;
+		}
 		
 	}
 	
