@@ -238,7 +238,7 @@ public class Menu
 			
 			if (contactFoundCount > 0)
 			{
-				System.out.println("\n\nEnter the corrosponding contact number you would like to update...");
+				System.out.println("\n\nEnter the corrosponding index number you would like to update...");
 				int indexOfContact = scanner.nextInt();
 				
 				System.out.print("\nWhat would you like to modify?\n1. First Name\n2. Last Name\n3. Phone Number\n4. Address\n\n");
@@ -304,19 +304,22 @@ public class Menu
 						mainMenu();	
 					}
 				case 4:
-					System.out.print("\nPlease enter the street address you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
-					String newStreet = scanner.next();
+					// FIXME: Scanner Issues
+					scanner.nextLine();
 					
-					System.out.print("\nPlease enter the city you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
-					String newCity = scanner.next();
+					System.out.print("\nPlease enter the street address you would like for " + directory[indexOfContact].getFirstName() + " " +  directory[indexOfContact].getLastName() + ": ");
+					String newStreet = scanner.nextLine();
 					
-					System.out.print("\nPlease enter the state you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
-					String newState = scanner.next();
+					System.out.print("\nPlease enter the city you would like for " + directory[indexOfContact].getAddressCity() + ": ");
+					String newCity = scanner.nextLine();
 					
-					System.out.print("\nPlease enter the state you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
+					System.out.print("\nPlease enter the state you would like for " + directory[indexOfContact].getAddressState() + ": ");
+					String newState = scanner.nextLine();
+					
+					System.out.print("\nPlease enter the zip code you would like to replace " + directory[indexOfContact].getAddressZipCode() + ": ");
 					int newZipCode = scanner.nextInt();
 					
-					System.out.print("\nAre you sure you want to update " + directory[indexOfContact].getFirstName() + " with... \nStreet: " + newStreet + "\nCity: " + newCity + "\nState: " + newState + "\n( Y / N ): ");
+					System.out.print("\nAre you sure you want to update " + directory[indexOfContact].getFirstName() + " " + directory[indexOfContact].getLastName() + " with... \n\nStreet Address: " + newStreet + "\nCity: " + newCity + "\nState: " + newState + "\nZip Code: " + newZipCode + "\n\n( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
 					

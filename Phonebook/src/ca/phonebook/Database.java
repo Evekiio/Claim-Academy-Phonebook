@@ -3,7 +3,7 @@ package ca.phonebook;
 public class Database
 {
 	private Contact[] directory = new Contact[0];
-	Validation validator = new Validation();
+	
 	
 	public Database()
 	{
@@ -61,10 +61,5 @@ public class Database
 	public void setDirectory(Contact[] directory)
 	{
 		this.directory = directory;
-	}
-	
-	public void checkIncomingData(String input)
-	{
-		validator.isValidString(input);
-	}
+	}	
 }
