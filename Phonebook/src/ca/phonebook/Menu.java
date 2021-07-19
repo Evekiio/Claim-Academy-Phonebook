@@ -369,10 +369,10 @@ public class Menu
 		while (isValid == false)
 		{
 			System.out.println("\nPlease select what you would like to search by...\n\n1. First Name\n2. Last Name\n3. Phone Number\n4. Street Address\n5. City\n6. State\n7. Zip Code\n\nPlease make a selection (1-7): ");
-			userSelection = scanner.nextInt();
-			
 			try 
 			{
+				userSelection = scanner.nextInt();
+				
 				if (userSelection > 0 && userSelection <= 7)
 				{
 					isValid = true;
@@ -385,7 +385,7 @@ public class Menu
 			}
 			catch (Exception e)
 			{
-			System.out.println("Please enter an integer 1-7 (Example: 2)...");
+			searchContacts();
 			}
 		}
 		
