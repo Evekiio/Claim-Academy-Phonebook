@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Menu
 {
-	// Instantiate Database Object
+	// Instantiate Database Object (Used for storing / maintaining contact data)
 	Database contactData = new Database();
 
 	
@@ -26,7 +26,7 @@ public class Menu
 	}
 	//###############################################################################################
 	
-	// A divider for UI/UX element (Esthetic Readability Support)
+	// A divider for menu UI/UX element (Esthetic Readability Support)
 	public void divider(boolean isHeader, String header)
 	{
 		if (isHeader) 
@@ -147,6 +147,19 @@ public class Menu
 			mainMenu();
 		}
 		
+		for (int i = 0; i < directory.length; i++)
+		{
+			System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+															  directory[i].getLastName() + " | " + 
+															  directory[i].getPhoneNumber() + " | " + 
+															  directory[i].getStreetAddress() + " " + 
+															  directory[i].getCity() + " " + 
+															  directory[i].getState());
+		}
+		
+		// Empty Line for UI/UX Functionality/Clarity & Return to Main Menu
+		System.out.println("");
+		
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.print("\nWhat index would you like to remove? (1, 2, 3, Etc.): ");
@@ -166,14 +179,14 @@ public class Menu
 		}
 	}
 	
-	//TODO - FIX THE SCANNER INCONSISTANCIES DURING STREET ADDRESS UPDATES
+	// TODO - FIX THE SCANNER INCONSISTANCIES DURING STREET ADDRESS UPDATES
 	// Runs through each object within the "database" (array of contact objects) and gets each objects data.
 	public void updateContact()
 	{
 		
-		Contact[] contactsToBrowse = contactData.getDirectory();
+		Contact[] directory = contactData.getDirectory();
 		
-		if (contactsToBrowse.length == 0 || contactsToBrowse == null)
+		if (directory.length == 0 || directory == null)
 		{
 			System.out.println("\nYour phonebook has 0 total contacts.");
 			mainMenu();
@@ -190,11 +203,11 @@ public class Menu
 			int contactFoundCount = 0;
 			
 			
-			for (int i = 0; i < contactsToBrowse.length; i++)
+			for (int i = 0; i < directory.length; i++)
 			{
-				if (userSelection.equals(contactsToBrowse[i].getPhoneNumber()))
+				if (userSelection.equals(directory[i].getPhoneNumber()))
 					{
-					System.out.print("\nContact Data [" + i + "]: " + contactsToBrowse[i].getFirstName() + " " + contactsToBrowse[i].getLastName());
+					System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + directory[i].getLastName());
 					contactFoundCount++;
 					}
 			}
@@ -213,16 +226,16 @@ public class Menu
 				switch(userSelectToUpdate)
 				{
 				case 1:
-					System.out.print("\nPlease enter the First Name you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
+					System.out.print("\nPlease enter the First Name you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
 					String newFirstName = scanner.next();
 					
-					System.out.print("\nAre you sure you want to update " + contactsToBrowse[indexOfContact].getFirstName() + " with " + newFirstName + "? ( Y / N ): ");
+					System.out.print("\nAre you sure you want to update " + directory[indexOfContact].getFirstName() + " with " + newFirstName + "? ( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
 					if (confirmed.equals("Y"))
 					{
-						contactsToBrowse[indexOfContact].setFirstName(newFirstName);
-						System.out.print("\n" + contactsToBrowse[indexOfContact].getFirstName() + " " +  contactsToBrowse[indexOfContact].getLastName() + " has been successfully updated.\n");
+						directory[indexOfContact].setFirstName(newFirstName);
+						System.out.print("\n" + directory[indexOfContact].getFirstName() + " " +  directory[indexOfContact].getLastName() + " has been successfully updated.\n");
 						mainMenu();
 					}
 					
@@ -231,16 +244,16 @@ public class Menu
 						mainMenu();	
 					}
 				case 2: 
-					System.out.print("\nPlease enter the Last Name you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
+					System.out.print("\nPlease enter the Last Name you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
 					String newLastName = scanner.next();
 					
-					System.out.print("\nAre you sure you want to update " + contactsToBrowse[indexOfContact].getLastName() + " with " + newLastName + "? ( Y / N ): ");
+					System.out.print("\nAre you sure you want to update " + directory[indexOfContact].getLastName() + " with " + newLastName + "? ( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
 					if (confirmed.equals("Y"))
 					{
-						contactsToBrowse[indexOfContact].setLastName(newLastName);
-						System.out.print("\n" + contactsToBrowse[indexOfContact].getFirstName() + " " +  contactsToBrowse[indexOfContact].getLastName() + " has been successfully updated.\n");
+						directory[indexOfContact].setLastName(newLastName);
+						System.out.print("\n" + directory[indexOfContact].getFirstName() + " " +  directory[indexOfContact].getLastName() + " has been successfully updated.\n");
 						mainMenu();
 					}
 					
@@ -249,16 +262,16 @@ public class Menu
 						mainMenu();	
 					}
 				case 3:
-					System.out.print("\nPlease enter the Phone Number you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
+					System.out.print("\nPlease enter the Phone Number you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
 					String newPhoneNumber = scanner.next();
 					
-					System.out.print("\nAre you sure you want to update " + contactsToBrowse[indexOfContact].getPhoneNumber() + " with " + newPhoneNumber + "? ( Y / N ): ");
+					System.out.print("\nAre you sure you want to update " + directory[indexOfContact].getPhoneNumber() + " with " + newPhoneNumber + "? ( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
 					if (confirmed.equals("Y"))
 					{
-						contactsToBrowse[indexOfContact].setPhoneNumber(newPhoneNumber);
-						System.out.print("\n" + contactsToBrowse[indexOfContact].getFirstName() + " " +  contactsToBrowse[indexOfContact].getLastName() + " has been successfully updated.\n");
+						directory[indexOfContact].setPhoneNumber(newPhoneNumber);
+						System.out.print("\n" + directory[indexOfContact].getFirstName() + " " +  directory[indexOfContact].getLastName() + " has been successfully updated.\n");
 						mainMenu();
 					}
 					
@@ -267,26 +280,26 @@ public class Menu
 						mainMenu();	
 					}
 				case 4:
-					System.out.print("\nPlease enter the street address you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
+					System.out.print("\nPlease enter the street address you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
 					String newStreet = scanner.next();
 					
-					System.out.print("\nPlease enter the city you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
+					System.out.print("\nPlease enter the city you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
 					String newCity = scanner.next();
 					
-					System.out.print("\nPlease enter the state you would like for " + contactsToBrowse[indexOfContact].getPhoneNumber() + ": ");
+					System.out.print("\nPlease enter the state you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
 					String newState = scanner.next();
 					
-					System.out.print("\nAre you sure you want to update " + contactsToBrowse[indexOfContact].getFirstName() + " with... \nStreet: " + newStreet + "\nCity: " + newCity + "\nState: " + newState + "\n( Y / N ): ");
+					System.out.print("\nAre you sure you want to update " + directory[indexOfContact].getFirstName() + " with... \nStreet: " + newStreet + "\nCity: " + newCity + "\nState: " + newState + "\n( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
 					
 					if (confirmed.equals("Y"))
 					{
-						contactsToBrowse[indexOfContact].setStreetAddress(newStreet);
-						contactsToBrowse[indexOfContact].setCity(newCity);
-						contactsToBrowse[indexOfContact].setState(newState);
+						directory[indexOfContact].setStreetAddress(newStreet);
+						directory[indexOfContact].setCity(newCity);
+						directory[indexOfContact].setState(newState);
 						
-						System.out.print("\n" + contactsToBrowse[indexOfContact].getFirstName() + " " +  contactsToBrowse[indexOfContact].getLastName() + " has been successfully updated.\n");
+						System.out.print("\n" + directory[indexOfContact].getFirstName() + " " +  directory[indexOfContact].getLastName() + " has been successfully updated.\n");
 						
 						
 						mainMenu();
@@ -306,7 +319,7 @@ public class Menu
 			}
 		}
 		
-		for (int i = 0; i < contactsToBrowse.length; i++)
+		for (int i = 0; i < directory.length; i++)
 		{
 			
 		}
@@ -328,22 +341,22 @@ public class Menu
 	public void browseContacts()
 	{
 		
-		Contact[] contactsToBrowse = contactData.getDirectory();
+		Contact[] directory = contactData.getDirectory();
 		
-		if (contactsToBrowse.length == 0 || contactsToBrowse == null)
+		if (directory.length == 0 || directory == null)
 		{
 			System.out.println("\nYour phonebook has 0 total contacts.");
 			mainMenu();
 		}
 		
-		for (int i = 0; i < contactsToBrowse.length; i++)
+		for (int i = 0; i < directory.length; i++)
 		{
-			System.out.print("\nContact Data [" + i + "]: " + contactsToBrowse[i].getFirstName() + " " + 
-															  contactsToBrowse[i].getLastName() + " | " + 
-															  contactsToBrowse[i].getPhoneNumber() + " | " + 
-															  contactsToBrowse[i].getStreetAddress() + " " + 
-															  contactsToBrowse[i].getCity() + " " + 
-															  contactsToBrowse[i].getState());
+			System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+															  directory[i].getLastName() + " | " + 
+															  directory[i].getPhoneNumber() + " | " + 
+															  directory[i].getStreetAddress() + " " + 
+															  directory[i].getCity() + " " + 
+															  directory[i].getState());
 		}
 		
 		// Empty Line for UI/UX Functionality/Clarity & Return to Main Menu

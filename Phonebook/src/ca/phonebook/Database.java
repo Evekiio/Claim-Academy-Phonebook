@@ -43,7 +43,7 @@ public class Database
 			else 
 			{
 				newDirectory[trackedRemoval] = oldDirectory[i];
-				System.out.println("\n[New Contact Copied]: " + oldDirectory[i].getFirstName());
+				// System.out.println("\n[New Contact Copied]: " + oldDirectory[i].getFirstName());
 				trackedRemoval++;
 			}
 		}
