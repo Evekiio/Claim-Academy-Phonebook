@@ -1,5 +1,6 @@
 package ca.phonebook;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 //import java.util.Arrays;
 
@@ -48,10 +49,28 @@ public class Menu
 		divider(true, "M A I N  M E N U");
 		
 		// UPDATE MENU BEFORE RELEASING APPLICATION
-		System.out.print("WELCOME TO THE PHONEBOOK\n1. Add Contact\n2. Remove Contact\n3. Update Contact\n4. Search Contacts \n5. Browse Contacts \n6. Exit Application\n\n##### TESTING ONLY #####\n7. Fast Add Contacts (Testing Only)\n\nPlease input a menu selection: ");
+		System.out.print("WELCOME TO THE PHONEBOOK\n1. Add Contact\n2. Remove Contact\n3. Update Contact\n4. Search Contacts \n5. Browse Sorted Contacts \n6. Exit Application\n\n##### TESTING ONLY #####\n7. Fast Add Contacts (Testing Only)\n\nPlease input a menu selection: ");
 		Scanner scanner = new Scanner(System.in);
-		int userSelection = scanner.nextInt();
+		int userSelection  = 0;
 		
+		// 57::71 Get user input for menu selection, if selection is text, == 0, or > 7... (Anything outside of 1-7) print out error message and return to the main menu. 
+		try 
+		{
+			userSelection = scanner.nextInt();
+			
+			if (userSelection == 0 || userSelection > 7)
+			{
+				System.out.println("\nYou made an invalid menu selection... please enter a whole number 1-7:");
+				mainMenu();
+			}
+		}
+		catch (InputMismatchException e)
+		{
+			System.out.println("\nYou made an invalid menu selection... please enter a whole number 1-7:");
+			mainMenu();
+		}
+		
+		// 74::101 Switch Statement to navigate to the next menu based on user input on line 59.
 		switch (userSelection)
 		{
 		case 1:
@@ -64,9 +83,7 @@ public class Menu
 			updateContact();
 			break;
 		case 4:
-			// System.out.print("\nSearch Functionality Coming Soon...\n");
 			searchContacts();
-			// mainMenu();
 			break;
 		case 5:
 			browseContacts();
@@ -304,7 +321,6 @@ public class Menu
 						mainMenu();	
 					}
 				case 4:
-					// FIXME: Scanner Issues
 					scanner.nextLine();
 					
 					System.out.print("\nPlease enter the street address you would like for " + directory[indexOfContact].getFirstName() + " " +  directory[indexOfContact].getLastName() + ": ");
@@ -361,60 +377,166 @@ public class Menu
 	// Search Functionality
 	public void searchContacts()
 	{
-		Scanner scanner = new Scanner(System.in);
-		int userSelection = 0;
-		boolean isValid = false;
-
+		Contact[] directory = contactData.getDirectory();
 		
-		while (isValid == false)
+		if (directory.length == 0 || directory == null)
 		{
-			System.out.println("\nPlease select what you would like to search by...\n\n1. First Name\n2. Last Name\n3. Phone Number\n4. Street Address\n5. City\n6. State\n7. Zip Code\n\nPlease make a selection (1-7): ");
-			try 
-			{
-				userSelection = scanner.nextInt();
-				
-				if (userSelection > 0 && userSelection <= 7)
-				{
-					isValid = true;
-				}
-				
-				else
-				{
-					isValid = false;
-				}
-			}
-			catch (Exception e)
-			{
-			searchContacts();
-			}
+			System.out.println("\nYour phonebook has 0 total contacts.");
+			mainMenu();
 		}
 		
-		// SWITCH STATEMENT
-		switch (userSelection)
+		else 
 		{
-		case 1:
-			System.out.println("WORKED!");
-			break;
-		case 2:
-			System.out.println("WORKED!");
-			break;
-		case 3:
-			System.out.println("WORKED!");
-			break;
-		case 4:
-			System.out.println("WORKED!");
-			break;
-		case 5:
-			System.out.println("WORKED!");
-			break;
-		case 6:
-			System.out.println("WORKED!");
-			break;
-		case 7:
-			System.out.println("WORKED!");
-			break;
+			Scanner scanner = new Scanner(System.in);
+			String userSearchQuery;
+			int userSelection = 0;
+			boolean isValid = false;
+	
+			
+			while (isValid == false)
+			{
+				System.out.println("\nPlease select what you would like to search by...\n\n1. First Name\n2. Last Name\n3. Phone Number\n4. Street Address\n5. City\n6. State\n7. Zip Code\n\nPlease make a selection (1-7): ");
+				try 
+				{
+					userSelection = scanner.nextInt();
+					
+					if (userSelection > 0 && userSelection <= 7)
+					{
+						isValid = true;
+					}
+					
+					else
+					{
+						isValid = false;
+					}
+				}
+				catch (Exception e)
+				{
+					System.out.print("Incorrect Input: Please enter a whole number 1-7...");
+					searchContacts();
+				}
+			}
+					
+			// SWITCH STATEMENT
+			switch (userSelection)
+			{
+			case 1:
+				try
+				{
+					System.out.println("Please enter the first name of the contact you're looking for: ");
+					userSearchQuery = scanner.next();
+					contactData.searchContacts(userSearchQuery, userSelection);
+					System.out.print("\n");
+					mainMenu();
+				}
+				
+				catch (Exception e)
+				{
+					System.out.println("Search Failed: Please try again...");
+					searchContacts();
+				}
+				
+				break;
+			case 2:
+				try
+				{
+					System.out.println("Please enter the last name of the contact you're looking for: ");
+					userSearchQuery = scanner.next();
+					contactData.searchContacts(userSearchQuery, userSelection);
+					System.out.print("\n");
+					mainMenu();
+				}
+				
+				catch (Exception e)
+				{
+					System.out.println("Search Failed: Please try again...");
+					searchContacts();
+				}
+				break;
+			case 3:
+				try
+				{
+					System.out.println("Please enter the phone number of the contact you're looking for: ");
+					userSearchQuery = scanner.next();
+					contactData.searchContacts(userSearchQuery, userSelection);
+					System.out.print("\n");
+					mainMenu();
+				}
+				
+				catch (Exception e)
+				{
+					System.out.println("Search Failed: Please try again...");
+					searchContacts();
+				}
+				break;
+			case 4:
+				try
+				{
+					System.out.println("Please enter the street of the contact you're looking for: ");
+					scanner.nextLine();
+					userSearchQuery = scanner.nextLine();
+					contactData.searchContacts(userSearchQuery, userSelection);
+					System.out.print("\n");
+					mainMenu();
+				}
+				
+				catch (Exception e)
+				{
+					System.out.println("Search Failed: Please try again...");
+					searchContacts();
+				}
+				break;
+			case 5:
+				try
+				{
+					System.out.println("Please enter the city of the contact you're looking for: ");
+					scanner.nextLine();
+					userSearchQuery = scanner.nextLine();
+					contactData.searchContacts(userSearchQuery, userSelection);
+					System.out.print("\n");
+					mainMenu();
+				}
+				
+				catch (Exception e)
+				{
+					System.out.println("Search Failed: Please try again...");
+					searchContacts();
+				}
+				break;
+			case 6:
+				try
+				{
+					System.out.println("Please enter the state of the contact you're looking for: ");
+					userSearchQuery = scanner.next();
+					contactData.searchContacts(userSearchQuery, userSelection);
+					System.out.print("\n");
+					mainMenu();
+				}
+				
+				catch (Exception e)
+				{
+					System.out.println("Search Failed: Please try again...");
+					searchContacts();
+				}
+				break;
+			case 7:
+				try
+				{
+					System.out.println("Please enter the zip code of the contact you're looking for: ");
+					userSearchQuery = scanner.next();
+					contactData.searchContacts(userSearchQuery, userSelection);
+					System.out.print("\n");
+					mainMenu();
+				}
+				
+				catch (Exception e)
+				{
+					System.out.println("Search Failed: Please try again...");
+					searchContacts();
+				}
+				break;
+			}
 		}
-		
 	}
 	
 	// Runs through each object within the "database" (array of contact objects) and gets each objects data.

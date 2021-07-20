@@ -53,6 +53,169 @@ public class Database
 		directory = newDirectory;	
 	}
 		
+	public void searchContacts(String searchInput, int searchBySelection)
+	{
+		int count = 0;
+		
+		switch (searchBySelection)
+		{
+		case 1:
+			for (int i = 0; i < directory.length; i++)
+			{
+				if (directory[i].getFirstName().equals(searchInput))
+				{
+					System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+																	  directory[i].getLastName() + " | " + 
+																	  directory[i].getPhoneNumber() + " | " + 
+																	  directory[i].getAddressStreet() + " " + 
+																	  directory[i].getAddressCity() + " " + 
+																	  directory[i].getAddressState() + ", " +
+																	  directory[i].getAddressZipCode());
+				
+				count++;
+				}
+			}
+			
+			if (count == 0)
+			{
+				System.out.println("\nNo contacts found matching your criteria...");
+			}
+			break;
+		case 2:
+			for (int i = 0; i < directory.length; i++)
+			{
+				if (directory[i].getLastName().equals(searchInput))
+				{
+					System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+																	  directory[i].getLastName() + " | " + 
+																	  directory[i].getPhoneNumber() + " | " + 
+																	  directory[i].getAddressStreet() + " " + 
+																	  directory[i].getAddressCity() + " " + 
+																	  directory[i].getAddressState() + ", " +
+																	  directory[i].getAddressZipCode());
+				
+				count++;
+				}
+			}
+			
+			if (count == 0)
+			{
+				System.out.println("\nNo contacts found matching your criteria...");
+			}
+			break;
+		case 3:
+			for (int i = 0; i < directory.length; i++)
+			{
+				if (directory[i].getPhoneNumber().equals(searchInput))
+				{
+					System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+																	  directory[i].getLastName() + " | " + 
+																	  directory[i].getPhoneNumber() + " | " + 
+																	  directory[i].getAddressStreet() + " " + 
+																	  directory[i].getAddressCity() + " " + 
+																	  directory[i].getAddressState() + ", " +
+																	  directory[i].getAddressZipCode());
+				
+				count++;
+				}
+			}
+			
+			if (count == 0)
+			{
+				System.out.println("\nNo contacts found matching your criteria...");
+			}
+			break;
+		case 4: 
+			for (int i = 0; i < directory.length; i++)
+			{
+				if (directory[i].getAddressStreet().equals(searchInput))
+				{
+					System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+																	  directory[i].getLastName() + " | " + 
+																	  directory[i].getPhoneNumber() + " | " + 
+																	  directory[i].getAddressStreet() + " " + 
+																	  directory[i].getAddressCity() + " " + 
+																	  directory[i].getAddressState() + ", " +
+																	  directory[i].getAddressZipCode());
+				
+				count++;
+				}
+			}
+			
+			if (count == 0)
+			{
+				System.out.println("\nNo contacts found matching your criteria...");
+			}
+			break;
+		case 5:
+			for (int i = 0; i < directory.length; i++)
+			{
+				if (directory[i].getAddressCity().equals(searchInput))
+				{
+					System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+																	  directory[i].getLastName() + " | " + 
+																	  directory[i].getPhoneNumber() + " | " + 
+																	  directory[i].getAddressStreet() + " " + 
+																	  directory[i].getAddressCity() + " " + 
+																	  directory[i].getAddressState() + ", " +
+																	  directory[i].getAddressZipCode());
+				
+				count++;
+				}
+			}
+			
+			if (count == 0)
+			{
+				System.out.println("\nNo contacts found matching your criteria...");
+			}
+			break;
+		case 6:
+			for (int i = 0; i < directory.length; i++)
+			{
+				if (directory[i].getAddressState().equals(searchInput))
+				{
+					System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+																	  directory[i].getLastName() + " | " + 
+																	  directory[i].getPhoneNumber() + " | " + 
+																	  directory[i].getAddressStreet() + " " + 
+																	  directory[i].getAddressCity() + " " + 
+																	  directory[i].getAddressState() + ", " +
+																	  directory[i].getAddressZipCode());
+				
+				count++;
+				}
+			}
+			
+			if (count == 0)
+			{
+				System.out.println("\nNo contacts found matching your criteria...");
+			}
+			break;
+		case 7:
+			for (int i = 0; i < directory.length; i++)
+			{
+				if (directory[i].getAddressZipCode() == Integer.parseInt(searchInput))
+				{
+					System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+																	  directory[i].getLastName() + " | " + 
+																	  directory[i].getPhoneNumber() + " | " + 
+																	  directory[i].getAddressStreet() + " " + 
+																	  directory[i].getAddressCity() + " " + 
+																	  directory[i].getAddressState() + ", " +
+																	  directory[i].getAddressZipCode());
+				
+				count++;
+				}
+			}
+			
+			if (count == 0)
+			{
+				System.out.println("\nNo contacts found matching your criteria...");
+			}
+			break;
+		}
+	}
+	
 	public Contact[] getDirectory()
 	{
 		return directory;
