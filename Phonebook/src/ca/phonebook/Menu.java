@@ -8,22 +8,21 @@ public class Menu
 {
 	// Instantiate Database Object (Used for storing / maintaining contact data)
 	Database contactData = new Database();
-
 	
 	//########### R E M O V E  T H I S  B E F O R E  R E L E A S I N G  A P P L I C A T I O N #######
 	public void testingOnly() 
 	{
 	System.out.print("\n");
 	Contact[] contacts = contactData.getDirectory();
-	Contact user1 = new Contact("Sanders", "Riddle", "360-470-9231", "8010 Andrews Court", "Mountain Home AFB", "Idaho", 83648);
+	Contact user1 = new Contact("Sanders", "Riddle", "1111111111", "2121 Testers Lane", "Olympia", "Washington", 98557);
 	System.out.println(contactData.addContact(contacts, user1));
 	
 	contacts = contactData.getDirectory();
-	Contact user2 = new Contact("Kelsey", "Riddle", "850-585-9750", "8010 Andrews Court", "Mountain Home AFB", "Idaho", 83648);
+	Contact user2 = new Contact("Tester", "Test", "2222222222", "8080 Bruce Court", "Mountain Home", "Idaho", 83648);
 	System.out.println(contactData.addContact(contacts, user2));
 	
 	contacts = contactData.getDirectory();
-	Contact user3 = new Contact("Bob", "Smith", "111-111-1111", "1111 Testing Avenue", "Boise", "Idaho", 83701);
+	Contact user3 = new Contact("Bob", "Smith", "1111111111", "1111 Testing Avenue", "Boise", "Idaho", 83701);
 	System.out.println(contactData.addContact(contacts, user3));
 	
 	mainMenu();
@@ -100,14 +99,14 @@ public class Menu
 		scanner.close();
 	}
 	
-	// Prompts user for contact information, creates the contact object with the given information, and stores it in the array of contacts.
+	// MENU SELECTION: 1 - Prompts user for contact information, creates the contact object with the given information, and stores it in the array of contacts.
 	public void addContact()
 	{
 		
 		// Declare the Variables to Pass to the New Contact
 		String firstName;
 		String lastName;
-		String phoneNumber;
+		String phoneNumber = null;
 		String addressStreet;
 		String addressCity;
 		String addressState;
@@ -124,8 +123,16 @@ public class Menu
 		System.out.print("Last Name: ");
 		lastName = scanner.nextLine();
 		
-		System.out.print("Phone Number: ");
-		phoneNumber = scanner.nextLine();
+		try 
+		{
+			System.out.print("Phone Number: ");
+			phoneNumber = scanner.nextLine();
+		}
+		
+		catch (Exception e)
+		{
+			System.out.print("That was not a valid phone number... Please enter a valid 10-digit US phone number... (Example: 111-111-1111 / 1111111111): ");
+		}
 		
 		System.out.print("Street Address: ");
 		addressStreet = scanner.nextLine();
@@ -154,17 +161,17 @@ public class Menu
 			{
 				System.out.println("Failed to store data for " + newContact + " please retry entry... (Exception: " + e.toString() + ")");
 			}
-			//scanner.close();
+			
 			mainMenu();
 		}
 		else
 		{
-			//scanner.close();
+			
 			mainMenu();
 		}
 	}
 	
-	// METHOD :: Removes Object from Object[] (Array)
+	// MENU SELECTION: 2 - Removes Object from Object[] (Array)
 	public void removeContact()
 	{
 		Contact[] directory = contactData.getDirectory();
@@ -174,6 +181,8 @@ public class Menu
 			System.out.println("\nYour phonebook has 0 total contacts.");
 			mainMenu();
 		}
+		
+		divider(true, "R E M O V E  C O N T A C T");
 		
 		for (int i = 0; i < directory.length; i++)
 		{
@@ -209,11 +218,14 @@ public class Menu
 		}
 	}
 	
-	// Runs through each object within the "database" (array of contact objects) and gets each objects data.
+	// MENU SELECTION: 3 - Runs through each object within the "database" (array of contact objects) and gets each objects data.
 	public void updateContact()
 	{
 		
 		Contact[] directory = contactData.getDirectory();
+		
+		String newPhoneNumber;
+		String phoneNumber = null;
 		
 		if (directory.length == 0 || directory == null)
 		{
@@ -261,6 +273,7 @@ public class Menu
 				System.out.print("\nWhat would you like to modify?\n1. First Name\n2. Last Name\n3. Phone Number\n4. Address\n\n");
 				int userSelectToUpdate = scanner.nextInt();
 				String confirmed ="";
+			
 				
 				
 				// Read user input to control flow for updating the identified contact object.
@@ -304,14 +317,33 @@ public class Menu
 					}
 				case 3:
 					System.out.print("\nPlease enter the Phone Number you would like for " + directory[indexOfContact].getPhoneNumber() + ": ");
-					String newPhoneNumber = scanner.next();
 					
-					System.out.print("\nAre you sure you want to update " + directory[indexOfContact].getPhoneNumber() + " with " + newPhoneNumber + "? ( Y / N ): ");
+					
+					try 
+					{
+						newPhoneNumber = scanner.next();
+						
+						if (newPhoneNumber.contains("-"))
+						{
+							newPhoneNumber.replace("-", "");
+						}
+						
+				
+					}
+					
+					catch (Exception e)
+					{
+						System.out.print("That was not a valid phone number... Please enter a valid 10-digit US phone number... (Example: 111-111-1111 / 1111111111): ");
+					}
+					
+					
+					
+					System.out.print("\nAre you sure you want to update " + directory[indexOfContact].getPhoneNumber() + " with " + phoneNumber + "? ( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
 					
 					if (confirmed.equals("Y"))
 					{
-						directory[indexOfContact].setPhoneNumber(newPhoneNumber);
+						directory[indexOfContact].setPhoneNumber(phoneNumber);
 						System.out.print("\n" + directory[indexOfContact].getFirstName() + " " +  directory[indexOfContact].getLastName() + " has been successfully updated.\n");
 						mainMenu();
 					}
@@ -374,7 +406,7 @@ public class Menu
 		mainMenu();
 	}
 
-	// Search Functionality
+	// MENU SELECTION: 4 - Search Functionality
 	public void searchContacts()
 	{
 		Contact[] directory = contactData.getDirectory();
@@ -387,6 +419,7 @@ public class Menu
 		
 		else 
 		{
+			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(System.in);
 			String userSearchQuery;
 			int userSelection = 0;
@@ -539,7 +572,7 @@ public class Menu
 		}
 	}
 	
-	// Runs through each object within the "database" (array of contact objects) and gets each objects data.
+	// MENU SELECTION: 5 - Runs through each object within the "database" (array of contact objects) and gets each objects data.
 	public void browseContacts()
 	{
 		
@@ -567,7 +600,7 @@ public class Menu
 		mainMenu();
 	}
 	
-	// Terminates the application runtime.
+	// MENU SELECTION: 6 - Terminates the application runtime.
 	public void exitApplication()
 	{
 		Runtime.getRuntime().exit(0);
