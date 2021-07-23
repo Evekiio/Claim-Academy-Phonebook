@@ -202,20 +202,54 @@ public class Menu
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.print("\nWhat index would you like to remove? (1, 2, 3, Etc.): ");
-		int indexToRemove = scanner.nextInt();
 		
-		System.out.print("\nAre you sure you wish to remove " + directory[indexToRemove].getFirstName() + " " + directory[indexToRemove].getLastName() + " from your phonebook? (Y / N): ");
-		char confirmRemoveContact = scanner.next().toUpperCase().charAt(0);
+		try 
+		{
+			int indexToRemove = scanner.nextInt();
+			
+			if (indexToRemove < 0 || indexToRemove > directory.length)
+			{
+				System.out.print("\nThat was not a valid index...");
+				removeContact();
+			}
+			
+			try 
+			{
+				System.out.print("\nAre you sure you wish to remove " + directory[indexToRemove].getFirstName() + " " + directory[indexToRemove].getLastName() + " from your phonebook? (Y / N): ");
+				char confirmRemoveContact = scanner.next().toUpperCase().charAt(0);
+				
+				if (confirmRemoveContact == 'Y')
+				{
+					contactData.removeContact(directory, indexToRemove);
+					mainMenu();
+				}
+				else if (confirmRemoveContact == 'N')
+				{
+					System.out.println("\n" + directory[indexToRemove].getFirstName() + " " + directory[indexToRemove].getLastName() + " was not removed.");
+					mainMenu();
+				}	
+				
+				else
+				{
+					System.out.println("\nThat was not a valid input... please enter 'Y' for Yes or 'N' for No");
+					removeContact();
+				}
+			}
+			
+			catch (Exception e)
+			{
+				System.out.println("\nSystem Error: " + e.getMessage());
+				removeContact();
+			}
+
+		}
 		
-		if (confirmRemoveContact == 'Y')
+		catch (Exception e)
 		{
-			contactData.removeContact(directory, indexToRemove);
-			mainMenu();
+			System.out.println("\nThat was not a valid index...");
+			removeContact();
 		}
-		else
-		{
-			mainMenu();
-		}
+
 	}
 	
 	// MENU SELECTION: 3 - Runs through each object within the "database" (array of contact objects) and gets each objects data.
