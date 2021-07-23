@@ -2,8 +2,6 @@ package ca.phonebook;
 
 public class Contact extends Address
 {
-	
-	// Declare Variables
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;

@@ -2,7 +2,6 @@ package ca.phonebook;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-//import java.util.Arrays;
 
 public class Menu
 {
@@ -617,6 +616,9 @@ public class Menu
 			System.out.println("\nYour phonebook has 0 total contacts.");
 			mainMenu();
 		}
+		
+		// Tells the database class to sort the directory using the un-efficient method of comparing the ASCII values of the first characters in first name.
+		contactData.sortDirectory(contactData.getDirectory());
 		
 		for (int i = 0; i < directory.length; i++)
 		{

@@ -4,10 +4,14 @@ public class Database
 {
 	private Contact[] directory = new Contact[0];
 	
-	
 	public Database()
 	{
 		super();
+	}
+
+	public Contact[] getDirectory()
+	{
+		return directory;
 	}
 
 	public String addContact(Contact[] oldDirectory, Contact newContact)
@@ -216,13 +220,39 @@ public class Database
 		}
 	}
 	
-	public Contact[] getDirectory()
-	{
-		return directory;
-	}
-
 	public void setDirectory(Contact[] directory)
 	{
 		this.directory = directory;
 	}	
+
+	public void sortDirectory(Contact[] directory)
+	{
+		Contact tempContact = new Contact(null, null, null, null, null, null, 0);
+		
+		for (int i = 0; i < directory.length; i++)
+		{
+			for (int j = i + 1; j < directory.length; j++)
+			{
+				if (directory[i].getFirstName().charAt(0) > directory[j].getFirstName().charAt(0))
+				{
+					tempContact = directory[i];
+					directory[i] = directory[j];
+					directory[j] = tempContact;
+				}
+				else if (directory[i].getFirstName().charAt(0) == directory[j].getFirstName().charAt(0))
+				{
+					if (directory[i].getFirstName().charAt(1) > directory[j].getFirstName().charAt(1))
+					{
+						tempContact = directory[i];
+						directory[i] = directory[j];
+						directory[j] = tempContact;
+					}
+				}
+				else 
+				{
+					
+				}
+			}
+		}
+	}
 }
