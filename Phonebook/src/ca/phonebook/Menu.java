@@ -43,11 +43,29 @@ public class Menu
 	
 	// Displays and prompts the user with the main menu for navigation.
 	public void mainMenu()
-	{
-		divider(true, "M A I N  M E N U");
-		
+	{ 
+		// PRINTS OUT ARTWORK FOR MAIN MENU
+		System.out.println("__     __  _ _                 _____                      "); 
+		System.out.println("\\ \\   / / | | |               |  __ \\                     "); 
+		System.out.println(" \\ \\_/ /__| | | _____      __ | |__) |_ _  __ _  ___  ___ "); 
+		System.out.println("  \\   / _ \\ | |/ _ \\ \\ /\\ / / |  ___/ _` |/ _` |/ _ \\/ __|"); 
+		System.out.println("   | |  __/ | | (_) \\ V  V /  | |  | (_| | (_| |  __/\\__ \\"); 
+		System.out.println("   |_|\\___|_|_|\\___/ \\_/\\_/   |_|   \\__,_|\\__, |\\___||___/"); 
+		System.out.println(" ==========================================__/ |=========="); 
+		System.out.println("                                          |___/");     
+				
 		// UPDATE MENU BEFORE RELEASING APPLICATION
-		System.out.print("WELCOME TO THE PHONEBOOK\n1. Add Contact\n2. Remove Contact\n3. Update Contact\n4. Search Contacts \n5. Browse Sorted Contacts \n6. Exit Application\n\n##### TESTING ONLY #####\n7. Fast Add Contacts (Testing Only)\n\nPlease input a menu selection: ");
+		System.out.print(""
+				+ "\n   1. Add Contact"
+				+ "\n   2. Remove Contact"
+				+ "\n   3. Update Contact"
+				+ "\n   4. Search Contacts"
+				+ "\n   5. Browse Sorted Contacts"
+				+ "\n   6. Exit Application"
+				+ "\n\n   ##### TESTING ONLY #####"
+				+ "\n   7. Fast Add Contacts (Testing Only)"
+				+ "\n\n   Please input a menu selection: ");
+		
 		Scanner scanner = new Scanner(System.in);
 		int userSelection  = 0;
 		
@@ -58,13 +76,13 @@ public class Menu
 			
 			if (userSelection == 0 || userSelection > 7)
 			{
-				System.out.println("\nYou made an invalid menu selection... please enter a whole number 1-7:");
+				System.out.println("\n   You made an invalid menu selection... please enter a whole number 1-7:");
 				mainMenu();
 			}
 		}
 		catch (InputMismatchException e)
 		{
-			System.out.println("\nYou made an invalid menu selection... please enter a whole number 1-7:");
+			System.out.println("\n   You made an invalid menu selection... please enter a whole number 1-7:");
 			mainMenu();
 		}
 		
@@ -609,11 +627,13 @@ public class Menu
 	public void browseContacts()
 	{
 		
+		
+		// FIXME: ADD ASC / DSC OPTIONS
 		Contact[] directory = contactData.getDirectory();
 		
 		if (directory.length == 0 || directory == null)
 		{
-			System.out.println("\nYour phonebook has 0 total contacts.");
+			System.out.println("\n   Your phonebook has 0 total contacts.");
 			mainMenu();
 		}
 		
@@ -622,7 +642,7 @@ public class Menu
 		
 		for (int i = 0; i < directory.length; i++)
 		{
-			System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
+			System.out.print("\n   Contact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
 															  directory[i].getLastName() + " | " + 
 															  directory[i].getPhoneNumber() + " | " + 
 															  directory[i].getAddressStreet() + " " + 

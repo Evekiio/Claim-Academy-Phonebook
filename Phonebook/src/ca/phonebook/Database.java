@@ -30,7 +30,7 @@ public class Database
 		
 		// Update reference for directory. 
 		directory = newDirectory;
-		return (newContact.getFirstName() + " " + newContact.getLastName() + " was stored successfully!");
+		return ("   " + newContact.getFirstName() + " " + newContact.getLastName() + " was stored successfully!");
 	}
 	
 	public void removeContact(Contact[] oldDirectory, int contactIndexToRemove)
