@@ -198,7 +198,7 @@ public class Database
 		case 7:
 			for (int i = 0; i < directory.length; i++)
 			{
-				if (directory[i].getAddressZipCode() == Integer.parseInt(searchInput))
+				if (directory[i].getAddressZipCode().equals(searchInput))
 				{
 					System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + 
 																	  directory[i].getLastName() + " | " + 
@@ -227,7 +227,7 @@ public class Database
 
 	public void sortDirectory(Contact[] directory)
 	{
-		Contact tempContact = new Contact(null, null, null, null, null, null, 0);
+		Contact tempContact = new Contact(null, null, null, null, null, null, null);
 		
 		for (int i = 0; i < directory.length; i++)
 		{

@@ -6,7 +6,7 @@ public class Contact extends Address
 	private String lastName;
 	private String phoneNumber;
 	
-	public Contact(String firstName, String lastName, String phoneNumber, String addressStreet, String addressCity, String addressState, int addressZipCode)
+	public Contact(String firstName, String lastName, String phoneNumber, String addressStreet, String addressCity, String addressState, String addressZipCode)
 	{
 		super(addressStreet, addressCity, addressState, addressZipCode);
 		this.firstName = firstName;

@@ -5,10 +5,10 @@ public class Address
 	private String addressStreet;
 	private String addressCity;
 	private String addressState;
-	private int addressZipCode;
+	private String addressZipCode;
 	
 	
-	public Address(String addressStreet, String addressCity, String addressState, int addressZipCode)
+	public Address(String addressStreet, String addressCity, String addressState, String addressZipCode)
 	{
 		super();
 		
@@ -54,13 +54,13 @@ public class Address
 	}
 
 
-	public int getAddressZipCode()
+	public String getAddressZipCode()
 	{
 		return addressZipCode;
 	}
 
 
-	public void setAddressZipCode(int addressZipCode)
+	public void setAddressZipCode(String addressZipCode)
 	{
 		this.addressZipCode = addressZipCode;
 	}

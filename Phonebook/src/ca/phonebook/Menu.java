@@ -13,15 +13,15 @@ public class Menu
 	{
 	System.out.print("\n");
 	Contact[] contacts = contactData.getDirectory();
-	Contact user1 = new Contact("Sanders", "Riddle", "1111111111", "2121 Testers Lane", "Olympia", "Washington", 98557);
+	Contact user1 = new Contact("Sanders", "Riddle", "1111111111", "2121 Testers Lane", "Olympia", "Washington", "98557");
 	System.out.println(contactData.addContact(contacts, user1));
 	
 	contacts = contactData.getDirectory();
-	Contact user2 = new Contact("Tester", "Test", "2222222222", "8080 Bruce Court", "Mountain Home", "Idaho", 83648);
+	Contact user2 = new Contact("Tester", "Test", "2222222222", "8080 Bruce Court", "Mountain Home", "Idaho", "83648");
 	System.out.println(contactData.addContact(contacts, user2));
 	
 	contacts = contactData.getDirectory();
-	Contact user3 = new Contact("Bob", "Smith", "1111111111", "1111 Testing Avenue", "Boise", "Idaho", 83701);
+	Contact user3 = new Contact("Bob", "Smith", "1111111111", "1111 Testing Avenue", "Boise", "Idaho", "83701");
 	System.out.println(contactData.addContact(contacts, user3));
 	
 	mainMenu();
@@ -33,11 +33,11 @@ public class Menu
 	{
 		if (isHeader) 
 		{
-			System.out.println("\n[ " + header + " ]========================================\n");	
+			System.out.println("\n ==[ " + header + " ]===============================\n");	
 		}
 		else
 		{
-			System.out.println("\n==========================================================\n");	
+			System.out.println("\n ===================================================\n");	
 		}
 	}
 	
@@ -127,43 +127,43 @@ public class Menu
 		String addressStreet;
 		String addressCity;
 		String addressState;
-		int addressZipCode;
+		String addressZipCode;
 		
 		divider(true, "A D D  C O N T A C T");
 		
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.print("First Name: ");
+		System.out.print("   First Name: ");
 		firstName = scanner.nextLine();
 		
-		System.out.print("Last Name: ");
+		System.out.print("   Last Name: ");
 		lastName = scanner.nextLine();
 		
 		try 
 		{
-			System.out.print("Phone Number: ");
+			System.out.print("   Phone Number: ");
 			phoneNumber = scanner.nextLine();
 		}
 		
 		catch (Exception e)
 		{
-			System.out.print("That was not a valid phone number... Please enter a valid 10-digit US phone number... (Example: 111-111-1111 / 1111111111): ");
+			System.out.print("   That was not a valid phone number... Please enter a valid 10-digit US phone number... (Example: 111-111-1111 / 1111111111): ");
 		}
 		
-		System.out.print("Street Address: ");
+		System.out.print("   Street Address: ");
 		addressStreet = scanner.nextLine();
 		
-		System.out.print("City: ");
+		System.out.print("   City: ");
 		addressCity = scanner.nextLine();
 		
-		System.out.print("State: ");
+		System.out.print("   State: ");
 		addressState = scanner.nextLine();
 		
-		System.out.print("Zip Code: ");
-		addressZipCode = scanner.nextInt();
+		System.out.print("   Zip Code: ");
+		addressZipCode = scanner.nextLine();
 		
-		System.out.print("\nAre you sure you wish to add " + firstName + " " + lastName + " to your phonebook? (Y / N): ");
+		System.out.print("\n   Are you sure you wish to add " + firstName + " " + lastName + " to your phonebook? (Y / N): ");
 		char confirmAddContact = scanner.next().toUpperCase().charAt(0);
 		
 		if (confirmAddContact == 'Y')
@@ -172,18 +172,18 @@ public class Menu
 			
 			try 
 			{
-				System.out.print("\n" + contactData.addContact(contactData.getDirectory(), newContact) + "\n");
+				System.out.print("\n   " + contactData.addContact(contactData.getDirectory(), newContact) + "\n");
 			}
 			catch (Exception e)
 			{
-				System.out.println("Failed to store data for " + newContact + " please retry entry... (Exception: " + e.toString() + ")");
+				System.out.println("\n   Failed to store data for " + newContact + " please retry entry... (Exception: " + e.toString() + ")");
 			}
 			
 			mainMenu();
 		}
 		else
 		{
-			
+			System.out.println("\n   Failed to store data, Please try again and confirm with 'Y' or 'N'");
 			mainMenu();
 		}
 	}
@@ -416,7 +416,7 @@ public class Menu
 					String newState = scanner.nextLine();
 					
 					System.out.print("\nPlease enter the zip code you would like to replace " + directory[indexOfContact].getAddressZipCode() + ": ");
-					int newZipCode = scanner.nextInt();
+					String newZipCode = scanner.nextLine();
 					
 					System.out.print("\nAre you sure you want to update " + directory[indexOfContact].getFirstName() + " " + directory[indexOfContact].getLastName() + " with... \n\nStreet Address: " + newStreet + "\nCity: " + newCity + "\nState: " + newState + "\nZip Code: " + newZipCode + "\n\n( Y / N ): ");
 					confirmed = scanner.next().toUpperCase();
