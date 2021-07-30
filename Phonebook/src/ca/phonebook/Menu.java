@@ -311,7 +311,13 @@ public class Menu
 			{
 				if (userSelection.equals(directory[i].getPhoneNumber()))
 					{
-					System.out.print("\nContact Data [" + i + "]: " + directory[i].getFirstName() + " " + directory[i].getLastName());
+					System.out.print("\nContact Data [" + i + "]: " + 
+										directory[i].getFirstName() + " " + 
+										directory[i].getLastName() + " | " + 
+										directory[i].getAddressStreet() + " " +
+										directory[i].getAddressCity() + " " +
+										directory[i].getAddressState() + ", " + 
+										directory[i].getAddressZipCode());
 					contactFoundCount++;
 					}
 			}
