@@ -30,7 +30,7 @@ public class Database
 		
 		// Update reference for directory. 
 		directory = newDirectory;
-		return ("   " + newContact.getFirstName() + " " + newContact.getLastName() + " was stored successfully!");
+		return (newContact.getFirstName() + " " + newContact.getLastName() + " was stored successfully!");
 	}
 	
 	public void removeContact(Contact[] oldDirectory, int contactIndexToRemove)
@@ -43,7 +43,7 @@ public class Database
 		{
 			if (i == contactIndexToRemove)
 			{
-				System.out.println("\nContact Index[" + contactIndexToRemove + "]:" + oldDirectory[contactIndexToRemove].getFirstName() + " " + oldDirectory[contactIndexToRemove].getLastName() + " has been removed from the directory.");
+				System.out.println("\nContact Index[" + contactIndexToRemove + "]: " + oldDirectory[contactIndexToRemove].getFirstName() + " " + oldDirectory[contactIndexToRemove].getLastName() + " has been removed from the directory.");
 			}
 			else 
 			{
@@ -233,24 +233,11 @@ public class Database
 		{
 			for (int j = i + 1; j < directory.length; j++)
 			{
-				if (directory[i].getFirstName().charAt(0) > directory[j].getFirstName().charAt(0))
+				if (directory[i].getFirstName().compareToIgnoreCase(directory[j].getFirstName()) > 0)
 				{
 					tempContact = directory[i];
 					directory[i] = directory[j];
 					directory[j] = tempContact;
-				}
-				else if (directory[i].getFirstName().charAt(0) == directory[j].getFirstName().charAt(0))
-				{
-					if (directory[i].getFirstName().charAt(1) > directory[j].getFirstName().charAt(1))
-					{
-						tempContact = directory[i];
-						directory[i] = directory[j];
-						directory[j] = tempContact;
-					}
-				}
-				else 
-				{
-					
 				}
 			}
 		}
